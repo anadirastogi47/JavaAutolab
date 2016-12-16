@@ -62,7 +62,7 @@ function initScoreboard(lab_no) {
       //   process.exit();
       //   return;
       // }
-       if(err)
+       if(err && process.env.mode === "TESTING")
       {
         console.log("Disabled connection with  MYSQL until testing completion.")
         return;
