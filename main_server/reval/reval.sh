@@ -6,7 +6,7 @@ end_time=$3 #`date -d "$3" +"%s"`
 echo "$start_time      $end_time"
 
 rm -f user_commits.txt
-
+rm -f ${lab}_reval_score.csv
 # Get the backups of all the labs
 cd ..
 bash get_submissions.sh $lab $4
@@ -14,6 +14,7 @@ cd reval
 echo "$lab" >> user_commits.txt
 number_users=`cat ../userList| wc -l`
 echo "$number_users" >> user_commits.txt
+cd ./reval
 while read id
 do
 	user_score=0

@@ -86,9 +86,11 @@ app.post('/submit', function(req, res){
   console.log('submit post request recieved');
       console.log(req.body)
 
+
   res.send(true);
 
   if(node_queue.length!==0) {
+     console.log(node_queue.length + ' ' + job_queue.length)
     var assigned_node = node_queue.pop();
     var assigned_hostname = assigned_node.hostname;
     var assigned_port = assigned_node.port;
