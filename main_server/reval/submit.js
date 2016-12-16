@@ -6,7 +6,6 @@
 
 //console.log(main_server)
 var socket = require('./socket.io/node_modules/socket.io-client')('https://'+main_server.hostname+":"+main_server.port);
-
 var fs = require('fs');
 var user_commits = fs.readFileSync('./user_commits.txt').toString('utf-8').split('\n');
 var i =0;
@@ -16,7 +15,7 @@ var students = Number(user_commits[i++]);
 
 number_of_requests=0; 
 
-languages = ['c','cpp','cpp14','java','python2','python3'];
+languages = ['C','cpp','cpp14','java','python2','python3'];
 while(students--)
 {
 	var id = user_commits[i++];
@@ -24,11 +23,11 @@ while(students--)
 	while(number_commits--)
 	{
 		var commit = user_commits[i++];
-		for each(var lang in languages)
+		for(var lang in languages)
 		{
-			socket.emit('submission',[id,lab,commit,lang];
+			socket.emit('submission',[id,lab,commit,languages[lang],process.env.ADMIN_KEY]);
 			number_of_requests++;
-			console.log('Request sent')
+			console.log(process.env.ADMIN_KEY)
 		}
 		
 		

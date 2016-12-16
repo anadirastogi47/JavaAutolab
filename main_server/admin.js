@@ -60,6 +60,7 @@ module.exports = function(socket)
 	socket.on('revaluate',function(data)
 	{
 		if(!socket.handshake.session.key) return;
+		console.log(socket.handshake.session.key)
 		var labs = require('/etc/main_server/labs.json').Labs;
 
 		var i =0;
@@ -71,7 +72,7 @@ module.exports = function(socket)
 		var start_date = labs[i].start_date + '/'+labs[i].start_month+'/'+labs[i].start_year + ' ' + labs[i].start_hour + ':' + labs[i].start_minute + ':00';
 		var end_date =  labs[i].end_date + '/'+ labs[i].end_month+'/'+labs[i].end_year + ' ' + labs[i].end_hour + ':' + labs[i].end_minute + ':00';
 
-		exec('cd reval; bash reval.sh '+data.labname+' "'+start_date+'" "'+end_date+'" localhost ' ,function(error,stdout,stderr)
+		exec('cd reval; bash reval.sh '+data.labname+' "'+start_date+'" "'+end_date+'" localhost ' + socket.handshake.session.key ,function(error,stdout,stderr)
 		{
 			checkLab(data.labname);
 
