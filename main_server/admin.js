@@ -66,14 +66,18 @@ module.exports = function(socket)
 		var i =0;
 		while( i < labs.length && labs[i]["Lab_No"]!=data.labname)i++;
 		if(i> labs.length) return;
-
+		console.log(data);
 
 
 		var start_date = labs[i].start_date + '/'+labs[i].start_month+'/'+labs[i].start_year + ' ' + labs[i].start_hour + ':' + labs[i].start_minute + ':00';
 		var end_date =  labs[i].end_date + '/'+ labs[i].end_month+'/'+labs[i].end_year + ' ' + labs[i].end_hour + ':' + labs[i].end_minute + ':00';
-
+		console.log('cd reval; bash reval.sh '+data.labname+' "'+start_date+'" "'+end_date+'" localhost ' + socket.handshake.session.key)
 		exec('cd reval; bash reval.sh '+data.labname+' "'+start_date+'" "'+end_date+'" localhost ' + socket.handshake.session.key ,function(error,stdout,stderr)
 		{
+			console.log("STDOUT")
+		    console.log(stdout)
+		    console.log("STDERR")
+		    console.log(stderr)
 			checkLab(data.labname);
 
 		})

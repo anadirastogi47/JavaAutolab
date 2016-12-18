@@ -273,7 +273,8 @@ io.on('connection', function(socket) {
     commit_hash=data[2];
     language=data[3];
     if(data.length == 5) admin_key = data[4];
-    if((!admin_key || APIKeys.indexOf(admin_key)==-1 ) && submission_pending.indexOf(id_number)!=-1)       // Check if there is a pending submission
+    else admin_key=null;
+    if((admin_key==null || APIKeys.indexOf(admin_key)==-1 ) && submission_pending.indexOf(id_number)!=-1)       // Check if there is a pending submission
     {   
       console.log("Pending Submission request" + ' ' + admin_key)                                                // with the same Non-Admin ID number 
       io.to(socket.id).emit('submission_pending',{});
