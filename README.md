@@ -12,3 +12,5 @@ See
 * [wiki](https://github.com/prasadtalasila/JavaAutolab/wiki)
 
 If you are considering an installation of Autolab, please use master branch.
+
+Read more ---
